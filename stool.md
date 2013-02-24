@@ -1,12 +1,12 @@
 slide
 =====
 
-“You’ve mentioned testing and refactoring, but there’s a third leg to the stool: that’s design.” - Zach Dennis
+> “You’ve mentioned testing and refactoring, but there’s a third leg to the stool: that’s design.” - Zach Dennis
 
 slide
 =====
 
-7 Degrees of FizzBuzz page
+screenshot of "7 Degrees of FizzBuzz"
 
 slide
 =====
@@ -14,9 +14,9 @@ slide
 The Tools
 ---------
 
->  Testing: unit test
->  Refactoring: Extract Method
->  Design: composition
+* Testing: unit test
+* Refactoring: Extract Method
+* Design: composition
 
 slide
 =====
@@ -30,6 +30,7 @@ slide
 =====
 
 "Go Ahead, Make a Mess" - Sandi Metz
+------------------------------------
 
 Screenshot http://confreaks.com/videos/1115-gogaruco2012-go-ahead-make-a-mess
 
@@ -39,6 +40,7 @@ slide
 Code -- First draft
 -------------------
 
+```
 def fizzbuzz last_num
   (1..last_num).map do |n|
     if n % 3 && n % 5
@@ -52,6 +54,7 @@ def fizzbuzz last_num
 end
 
 puts fizzbuzz(30).join(" ")
+```
 
 slide
 =====
@@ -87,8 +90,8 @@ output(some_data) # integrated
 slide
 =====
 
-#fail
------
+FAIL
+----
 
 ```
 $ ruby fizzbuzz.rb
@@ -123,7 +126,7 @@ end
 slide
 =====
 
-#fail #fail
+FAIL #fail
 -----------
 
 ```
@@ -167,7 +170,7 @@ end
 slide
 =====
 
-#failagain
+FAIL again
 ----------
 
 ```
@@ -207,8 +210,8 @@ end
 slide
 =====
 
-#grrrrrrr
----------
+Grrrrrrr...
+-----------
 
 ```
 $ rspec stool_spec.rb 
@@ -309,7 +312,7 @@ def fizzbuzz_a_number
     n.to_s
   end
 end
-``
+```
 
 slide
 =====
