@@ -11,20 +11,17 @@ screenshot of "7 Degrees of FizzBuzz"
 slide
 =====
 
+The Challenge
+-------------
+
+> Output a set of numbers (say, 1-15), but whenever a number is divisible by 3, you output “Fizz” instead. If it’s divisible by 5, you output “Buzz” instead. If it’s divisible by 3 and 5, you output “FizzBuzz” instead.
+
 The Tools
 ---------
 
 * Testing: unit test
 * Refactoring: Extract Method
 * Design: composition
-
-slide
-=====
-
-The Challenge
--------------
-
-> Output a set of numbers (say, 1-15), but whenever a number is divisible by 3, you output “Fizz” instead. If it’s divisible by 5, you output “Buzz” instead. If it’s divisible by 3 and 5, you output “FizzBuzz” instead.
 
 slide
 =====
@@ -144,8 +141,7 @@ Failures:
 slide
 =====
 
-Writing tests like that is one reason people give up testing: it's EXHAUSTING.
-------------------------------------------------------------------------------
+Writing tests like that is one reason people give up testing: it's *exhausting*, and the results are less than helpful.
 
 slide
 =====
@@ -229,7 +225,6 @@ slide
 =====
 
 Bugs in your tests are another reason people give up testing. *headdesk*
-------------------------------------------------------------------------
 
 slide
 =====
@@ -252,7 +247,6 @@ slide
 =====
 
 (TDD left as an exercise for the reader)
-----------------------------------------
 
 slide
 =====
@@ -260,7 +254,7 @@ slide
 Can't write the test I want, because we don't have *enough* composition
 -----------------------------------------------------------------------
 
-Too many responsibilities (see: Single Responsibility Principle)
+Fizzbuzz method has too many responsibilities (see: Single Responsibility Principle)
 
 1. Iterate over an array
 2. Fizzbuzz each number
@@ -288,7 +282,7 @@ Extract Method
 --------------
 
 1. Create new method with intention-revealing name: copy code into new method
-2. Find vars created outside but used inside: add them as method arguments
+2. Find vars created outside but used inside: add as method arguments
 3. Find vars created/modified inside but used outside: set as return value
 4. Test the new method
 5. Replace the original code with a call to the new method
@@ -317,8 +311,8 @@ end
 slide
 =====
 
-2. Find vars created outside but used inside: add them as method arguments
---------------------------------------------------------------------------
+2. Find vars created outside but used inside: add as method arguments
+---------------------------------------------------------------------
 
 ```
 def fizzbuzz_a_number n
@@ -415,7 +409,7 @@ Do we need both? Let's compare failures
 ---------------------------------------
 
 ```
-if n % 3 == 0 && n % 5
+if n % 3 == 0 && n % 5 # <== Oops
   "FizzBuzz"
 ```
 
@@ -450,6 +444,6 @@ The Three-Legged Stool
 ----------------------
 
 (graphic)
-Program correctness --> Tests
-High-quality tests --> Design for testability
-Design for testability --> Design + refactoring
+* Program correctness --> Tests
+* High-quality tests --> Design for testability
+* Design for testability --> Design + refactoring
