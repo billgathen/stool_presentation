@@ -16,6 +16,9 @@ The Challenge
 
 > Output a set of numbers (say, 1-15), but whenever a number is divisible by 3, you output “Fizz” instead. If it’s divisible by 5, you output “Buzz” instead. If it’s divisible by 3 and 5, you output “FizzBuzz” instead.
 
+slide
+=====
+
 The Tools
 ---------
 
@@ -270,9 +273,6 @@ slide
 
 > Refactoring: improving the structure of code without changing its external behavior.
 
-slide
-=====
-
 Pics of Martin Fowler, Refactoring, Refactoring Ruby
 
 slide
@@ -409,7 +409,7 @@ Do we need both? Let's compare failures
 ---------------------------------------
 
 ```
-if n % 3 == 0 && n % 5 # <== Oops
+if n % 3 == 0 && n % 5 # <== Oops!
   "FizzBuzz"
 ```
 
