@@ -12,17 +12,19 @@ slide
 =====
 
 The Tools
+---------
 
-Testing: unit test
-Refactoring: Extract Method
-Design: composition
+>  Testing: unit test
+>  Refactoring: Extract Method
+>  Design: composition
 
 slide
 =====
 
 The Challenge
+-------------
 
-Output a set of numbers (say, 1-15), but whenever a number is divisible by 3, you output “Fizz” instead. If it’s divisible by 5, you output “Buzz” instead. If it’s divisible by 3 and 5, you output “FizzBuzz” instead.
+> Output a set of numbers (say, 1-15), but whenever a number is divisible by 3, you output “Fizz” instead. If it’s divisible by 5, you output “Buzz” instead. If it’s divisible by 3 and 5, you output “FizzBuzz” instead.
 
 slide
 =====
@@ -35,6 +37,7 @@ slide
 =====
 
 Code -- First draft
+-------------------
 
 def fizzbuzz last_num
   (1..last_num).map do |n|
@@ -53,12 +56,13 @@ puts fizzbuzz(30).join(" ")
 slide
 =====
 
-Composition: assembling something out of component parts
+> Composition: assembling something out of component parts
 
 slide
 =====
 
 Basic level of composition: the method
+--------------------------------------
 
 Repeat original version code slide
 
@@ -66,7 +70,9 @@ slide
 =====
 
 We'll talk about integration another day
+----------------------------------------
 
+```
 def some_data
   [ 1, 2, 3 ]
 end
@@ -76,41 +82,51 @@ def output data
 end
 
 output(some_data) # integrated
+```
 
 slide
 =====
 
 #fail
+-----
 
+```
 $ ruby fizzbuzz.rb
 FizzBuzz FizzBuzz FizzBuzz FizzBuzz FizzBuzz FizzBuzz FizzBuzz FizzBuzz FizzBuzz FizzBuzz FizzBuzz FizzBuzz FizzBuzz FizzBuzz FizzBuzz FizzBuzz FizzBuzz FizzBuzz FizzBuzz FizzBuzz FizzBuzz FizzBuzz FizzBuzz FizzBuzz FizzBuzz FizzBuzz FizzBuzz FizzBuzz FizzBuzz FizzBuzz
+```
 
 slide
 =====
 
 Then Make It Right (Testing)
+----------------------------
 
 slide
 =====
 
-Testing: exercising program code in order to prove it functions as expected in all the important ways it might be used or abused.
+> Testing: exercising program code in order to prove it functions as expected in all the important ways it might be used or abused.
 
 slide
 =====
 
 Test -- First Draft
+-------------------
 
+```
 describe 'fizzbuzz' do
   it 'works to 30' do
     fizzbuzz(30).should == %w{ 1 2 Fizz 4 Buzz Fizz 7 8 Fizz Buzz 11 Fizz 13 14 Buzz 16 17 Fizz 19 Buzz Fizz 22 23 Fizz Buzz 26 Fizz 28 29 FizzBuzz }
   end
 end
+```
 
 slide
 =====
 
 #fail #fail
+-----------
 
+```
 $ rspec stool_spec.rb 
 F
 
@@ -120,17 +136,21 @@ Failures:
      Failure/Error: fizzbuzz(30).should == %w{ 1 2 Fizz 4 Buzz Fizz 7 8 Fizz Buzz 11 Fizz 13 14 Buzz 16 17 Fizz 19 Buzz Fizz 22 23 Fizz Buzz 26 Fizz 28 29 FizzBuzz }
        expected: ["1", "2", "Fizz", "4", "Buzz", "Fizz", "7", "8", "Fizz", "Buzz", "11", "Fizz", "13", "14", "Buzz", "16", "17", "Fizz", "19", "Buzz", "Fizz", "22", "23", "Fizz", "Buzz", "26", "Fizz", "28", "29", "FizzBuzz"]
             got: ["FizzBuzz", "FizzBuzz", "FizzBuzz", "FizzBuzz", "FizzBuzz", "FizzBuzz", "FizzBuzz", "FizzBuzz", "FizzBuzz", "FizzBuzz", "FizzBuzz", "FizzBuzz", "FizzBuzz", "FizzBuzz", "FizzBuzz", "FizzBuzz", "FizzBuzz", "FizzBuzz", "FizzBuzz", "FizzBuzz", "FizzBuzz", "FizzBuzz", "FizzBuzz", "FizzBuzz", "FizzBuzz", "FizzBuzz", "FizzBuzz", "FizzBuzz", "FizzBuzz", "FizzBuzz"] (using ==)
+```
 
 slide
 =====
 
 Writing tests like that is one reason people give up testing: it's EXHAUSTING.
+------------------------------------------------------------------------------
 
 slide
 =====
 
 Add the == 0
+------------
 
+```
 def fizzbuzz last_num
   (1..last_num).map do |n|
     if n % 3 == 0 && n % 5 == 0
@@ -142,12 +162,15 @@ def fizzbuzz last_num
     end
   end
 end
+```
 
 slide
 =====
 
 #failagain
+----------
 
+```
 $ rspec stool_spec.rb 
 F
 
@@ -157,12 +180,15 @@ Failures:
        Failure/Error: fizzbuzz(30).should == %w{ 1 2 Fizz 4 Buzz Fizz 7 8 Fizz Buzz 11 Fizz 13 14 Buzz 16 17 Fizz 19 Buzz Fizz 22 23 Fizz Buzz 26 Fizz 28 29 FizzBuzz }
              expected: ["1", "2", "Fizz", "4", "Buzz", "Fizz", "7", "8", "Fizz", "Buzz", "11", "Fizz", "13", "14", "Buzz", "16", "17", "Fizz", "19", "Buzz", "Fizz", "22", "23", "Fizz", "Buzz", "26", "Fizz", "28", "29", "FizzBuzz"]
                   got: [nil, nil, "Fizz", nil, "Buzz", "Fizz", nil, nil, "Fizz", "Buzz", nil, "Fizz", nil, nil, "FizzBuzz", nil, nil, "Fizz", nil, "Buzz", "Fizz", nil, nil, "Fizz", "Buzz", nil, "Fizz", nil, nil, "FizzBuzz"] (using ==)
+```
 
 slide
 =====
 
 Add the else
+------------
 
+```
 def fizzbuzz last_num
   (1..last_num).map do |n|
     if n % 3 == 0 && n % 5 == 0
@@ -176,12 +202,15 @@ def fizzbuzz last_num
     end
   end
 end
+```
 
 slide
 =====
 
 #grrrrrrr
+---------
 
+```
 $ rspec stool_spec.rb 
 F
 
@@ -191,17 +220,21 @@ Failures:
      Failure/Error: fizzbuzz(30).should == %w{ 1 2 Fizz 4 Buzz Fizz 7 8 Fizz Buzz 11 Fizz 13 14 Buzz 16 17 Fizz 19 Buzz Fizz 22 23 Fizz Buzz 26 Fizz 28 29 FizzBuzz }
            expected: ["1", "2", "Fizz", "4", "Buzz", "Fizz", "7", "8", "Fizz", "Buzz", "11", "Fizz", "13", "14", "Buzz", "16", "17", "Fizz", "19", "Buzz", "Fizz", "22", "23", "Fizz", "Buzz", "26", "Fizz", "28", "29", "FizzBuzz"]
                 got: ["1", "2", "Fizz", "4", "Buzz", "Fizz", "7", "8", "Fizz", "Buzz", "11", "Fizz", "13", "14", "FizzBuzz", "16", "17", "Fizz", "19", "Buzz", "Fizz", "22", "23", "Fizz", "Buzz", "26", "Fizz", "28", "29", "FizzBuzz"] (using ==)
+```
 
 slide
 =====
 
 Bugs in your tests are another reason people give up testing. *headdesk*
+------------------------------------------------------------------------
 
 slide
 =====
 
 Test I want to write
+--------------------
 
+```
 describe 'fizzbuzz' do
   it 'a single number' do
     fizzbuzz_a_number(9).should == "Fizz"
@@ -210,16 +243,19 @@ describe 'fizzbuzz' do
     fizzbuzz_a_number(30).should == "FizzBuzz"
   end
 end
+```
 
 slide
 =====
 
 (TDD left as an exercise for the reader)
+----------------------------------------
 
 slide
 =====
 
 Can't write the test I want, because we don't have *enough* composition
+-----------------------------------------------------------------------
 
 Too many responsibilities (see: Single Responsibility Principle)
 
@@ -230,21 +266,23 @@ slide
 =====
 
 Then Make It Easy
+-----------------
 
 slide
 =====
 
-Refactoring: improving the structure of code without changing its external behavior.
+> Refactoring: improving the structure of code without changing its external behavior.
 
 slide
 =====
 
-Pic of Martin Fowler, Refactoring, Refactoring Ruby
+Pics of Martin Fowler, Refactoring, Refactoring Ruby
 
 slide
 =====
 
 Extract Method
+--------------
 
 1. Create new method with intention-revealing name: copy code into new method
 2. Find vars created outside but used inside: add them as method arguments
@@ -257,7 +295,9 @@ slide
 =====
 
 1. Create new method with intention-revealing name: copy code into new method
+-----------------------------------------------------------------------------
 
+```
 def fizzbuzz_a_number
   if n % 3 == 0 && n % 5 == 0
     "FizzBuzz"
@@ -269,12 +309,15 @@ def fizzbuzz_a_number
     n.to_s
   end
 end
+``
 
 slide
 =====
 
 2. Find vars created outside but used inside: add them as method arguments
+--------------------------------------------------------------------------
 
+```
 def fizzbuzz_a_number n
   if n % 3 == 0 && n % 5 == 0
     "FizzBuzz"
@@ -286,12 +329,15 @@ def fizzbuzz_a_number n
     n.to_s
   end
 end
+```
 
 slide
 =====
 
 3. Find vars created/modified inside but used outside: set as return value
+--------------------------------------------------------------------------
 
+```
 def fizzbuzz_a_number n
   if n % 3 == 0 && n % 5 == 0
     "FizzBuzz"
@@ -303,23 +349,29 @@ def fizzbuzz_a_number n
     n.to_s
   end
 end
+```
 
 slide
 =====
 
 4. Test the new method
+----------------------
 
+```
 rspec stool_spec.rb 
 ..
 
 Finished in 0.00051 seconds
 2 examples, 0 failures
+```
 
 slide
 =====
 
 5. Replace the original code with a call to the new method
+----------------------------------------------------------
 
+```
 def fizzbuzz_a_number n
   if n % 3 == 0 && n % 5 == 0
     "FizzBuzz"
@@ -337,31 +389,40 @@ def fizzbuzz last_num
     fizzbuzz_a_number(n)
   end
 end
+```
 
 slide
 =====
 
 6. New and old tests should still pass
+--------------------------------------
 
+```
 rspec stool_spec.rb 
 ..
 
 Finished in 0.00051 seconds
 2 examples, 0 failures
+```
 
 slide
 =====
 
-Compare failures
+Do we need both? Let's compare failures
+---------------------------------------
 
+```
 if n % 3 == 0 && n % 5
   "FizzBuzz"
+```
 
 slide
 =====
 
 It's your choice
+----------------
 
+```
 $ rspec stool_spec.rb 
 FF
 
@@ -377,12 +438,15 @@ Failures:
      Failure/Error: fizzbuzz(30).should == %w{ 1 2 Fizz 4 Buzz Fizz 7 8 Fizz Buzz 11 Fizz 13 14 FizzBuzz 16 17 Fizz 19 Buzz Fizz 22 23 Fizz Buzz 26 Fizz 28 29 FizzBuzz }
        expected: ["1", "2", "Fizz", "4", "Buzz", "Fizz", "7", "8", "Fizz", "Buzz", "11", "Fizz", "13", "14", "FizzBuzz", "16", "17", "Fizz", "19", "Buzz", "Fizz", "22", "23", "Fizz", "Buzz", "26", "Fizz", "28", "29", "FizzBuzz"]
             got: ["1", "2", "FizzBuzz", "4", "Buzz", "FizzBuzz", "7", "8", "FizzBuzz", "Buzz", "11", "FizzBuzz", "13", "14", "FizzBuzz", "16", "17", "FizzBuzz", "19", "Buzz", "FizzBuzz", "22", "23", "FizzBuzz", "Buzz", "26", "FizzBuzz", "28", "29", "FizzBuzz"] (using ==)
+```
 
 slide
 =====
 
 The Three-Legged Stool
+----------------------
 
+(graphic)
 Program correctness --> Tests
 High-quality tests --> Design for testability
 Design for testability --> Design + refactoring
