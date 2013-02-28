@@ -1,6 +1,15 @@
 slide
 =====
 
+The Three-Legged Stool: Testing, Refactoring and Design
+
+Bill Gathen
+http://billgathen.com
+@epicpoodle
+
+slide
+=====
+
 > “You’ve mentioned testing and refactoring, but there’s a third leg to the stool: that’s design.” - Zach Dennis
 
 slide
