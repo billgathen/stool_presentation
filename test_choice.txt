@@ -1,0 +1,16 @@
+$ rspec stool_spec.rb 
+FF
+
+Failures:
+
+  1) fizzbuzz a single number
+     Failure/Error: fizzbuzz_a_number(9).should == "Fizz"
+       expected: "Fizz"
+            got: "FizzBuzz" (using ==)
+     # ./stool_spec.rb:23:in `block (2 levels) in <top (required)>'
+
+  2) fizzbuzz works to 30
+     Failure/Error: fizzbuzz(30).should == %w{ 1 2 Fizz 4 Buzz Fizz 7 8 Fizz Buzz 11 Fizz 13 14 FizzBuzz 16 17 Fizz 19 Buzz Fizz 22 23 Fizz Buzz 26 Fizz 28 29 FizzBuzz }
+       expected: ["1", "2", "Fizz", "4", "Buzz", "Fizz", "7", "8", "Fizz", "Buzz", "11", "Fizz", "13", "14", "FizzBuzz", "16", "17", "Fizz", "19", "Buzz", "Fizz", "22", "23", "Fizz", "Buzz", "26", "Fizz", "28", "29", "FizzBuzz"]
+            got: ["1", "2", "FizzBuzz", "4", "Buzz", "FizzBuzz", "7", "8", "FizzBuzz", "Buzz", "11", "FizzBuzz", "13", "14", "FizzBuzz", "16", "17", "FizzBuzz", "19", "Buzz", "FizzBuzz", "22", "23", "FizzBuzz", "Buzz", "26", "FizzBuzz", "28", "29", "FizzBuzz"] (using ==)
+
